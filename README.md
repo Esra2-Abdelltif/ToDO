@@ -2,7 +2,7 @@
 
 ## 📱 ToDO App
 
-Using Local DataBase Sqflite and Statemangment Bloc .
+Using Local DataBase Sqflite and Statemangment Bloc and local notifications .
 ##
 https://user-images.githubusercontent.com/72301777/181398336-37a7b07e-0f4b-4eec-a5c2-3ceadbf56c31.mp4
 
