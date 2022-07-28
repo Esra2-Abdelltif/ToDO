@@ -1,6 +1,9 @@
 <h1 align="center"> 👋,Algoriza Internship project </h1>
+
+## 📱 Task one Screens
 ## 📱 ToDO App
 Used bloc, SQLite, and local notifications.
+
 
 ![app](https://user-images.githubusercontent.com/72301777/181237776-5e69d8bd-ba4b-4890-9a82-1ed4bd818c0c.png)
 ![Screenshot_20220727-133524](https://user-images.githubusercontent.com/72301777/181237782-c5be2679-5f4c-45e4-a118-42866d1af35b.jpg)
