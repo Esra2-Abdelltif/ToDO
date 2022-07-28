@@ -16,6 +16,7 @@ class AppInsertDataBaseState extends AppStates {}
 class AppGetDataBaseState extends AppStates {}
 class AppGetDataBaseLoadingState extends AppStates {}
 class AppDeleteItemState extends AppStates {}
+class AppDeleteAllDataBaseState extends AppStates{}
 class AppMoveDataBaseScreenState extends AppStates {}
 class AppMarkIsCompletedStete extends AppStates{}
 class AppSetFavLoadingState extends AppStates{}

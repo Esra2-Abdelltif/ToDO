@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_algoriza/features/scheduleScreen/presention/widgets/addDataBar.dart';
 import 'package:todo_algoriza/features/scheduleScreen/presention/widgets/showtask.dart';
-import 'package:todo_algoriza/util/Bloc/cubit.dart';
-import 'package:todo_algoriza/util/widgets/myDivider.dart';
+import 'package:todo_algoriza/core/util/Bloc/cubit.dart';
+import 'package:todo_algoriza/core/util/widgets/myDivider.dart';
 
-import '../../../../util/Bloc/states.dart';
+import '../../../../core/util/Bloc/states.dart';
 
 class ScheduleWidget extends StatelessWidget {
   const ScheduleWidget({Key? key}) : super(key: key);

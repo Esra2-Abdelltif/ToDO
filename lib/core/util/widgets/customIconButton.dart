@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_algoriza/util/style/colors.dart';
+import 'package:todo_algoriza/core/util/style/colors.dart';
 
 class CustomIconButton extends StatelessWidget {
   final VoidCallback onTap;

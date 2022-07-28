@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_algoriza/util/Bloc/cubit.dart';
-import 'package:todo_algoriza/util/Bloc/states.dart';
-import 'package:todo_algoriza/util/widgets/emptyScreen.dart';
+import 'package:todo_algoriza/core/util/Bloc/cubit.dart';
+import 'package:todo_algoriza/core/util/Bloc/states.dart';
+import 'package:todo_algoriza/core/util/widgets/emptyScreen.dart';
 
-import '../../../../util/Bloc/cubit.dart';
-import '../../../../util/widgets/BuildTask.dart';
+import '../../../../core/util/Bloc/cubit.dart';
+import '../../../../core/util/widgets/BuildTask.dart';
 
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class FavoriteScreen extends StatelessWidget {
               : Expanded(
             child: RefreshIndicator(
               onRefresh: () async {
-                AppBloc.get(context).GetDataFromDataBase();
+                AppBloc.get(context).GetDataFromDataBase(cubit.db);
 
 
               },

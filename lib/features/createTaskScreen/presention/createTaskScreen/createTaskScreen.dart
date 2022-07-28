@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_algoriza/features/createTaskScreen/presention/createTaskWidget/createTaskWidget.dart';
-import 'package:todo_algoriza/util/constant/constant.dart';
-import 'package:todo_algoriza/util/widgets/customIconButton.dart';
+import '../../../../core/util/constant/constant.dart';
+import '../../../../core/util/widgets/customIconButton.dart';
 
 class CreateTaskScreen extends StatelessWidget {
   var ScaffoldKey = GlobalKey<ScaffoldState>();

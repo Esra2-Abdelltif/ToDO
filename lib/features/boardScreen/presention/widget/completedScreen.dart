@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_algoriza/util/Bloc/cubit.dart';
-import 'package:todo_algoriza/util/Bloc/states.dart';
-import 'package:todo_algoriza/util/widgets/customButton.dart';
-import 'package:todo_algoriza/util/widgets/myDivider.dart';
+import 'package:todo_algoriza/core/util/Bloc/cubit.dart';
+import 'package:todo_algoriza/core/util/Bloc/states.dart';
+import 'package:todo_algoriza/core/util/widgets/customButton.dart';
+import 'package:todo_algoriza/core/util/widgets/myDivider.dart';
 
-import '../../../../util/widgets/BuildTask.dart';
-import '../../../../util/widgets/emptyScreen.dart';
+import '../../../../core/util/widgets/BuildTask.dart';
+import '../../../../core/util/widgets/emptyScreen.dart';
 
 class CompletedScreen extends StatelessWidget {
   const CompletedScreen({Key? key}) : super(key: key);
@@ -27,7 +27,7 @@ class CompletedScreen extends StatelessWidget {
               : Expanded(
             child: RefreshIndicator(
               onRefresh: () async {
-                AppBloc.get(context).GetDataFromDataBase();
+                AppBloc.get(context).GetDataFromDataBase(cubit.db);
               },
               child: ListView.builder(
                   itemBuilder: (context, index) => BuildTask(

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
@@ -8,8 +9,8 @@ import 'package:path/path.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'package:todo_algoriza/features/notifiacationScreen/presention/notifiacationScreen/notification.dart';
-import 'package:todo_algoriza/util/Bloc/cubit.dart';
-import 'package:todo_algoriza/util/constant/constant.dart';
+import 'package:todo_algoriza/core/util/Bloc/cubit.dart';
+import '../../../../core/util/constant/constant.dart';
 
 class NotifyHelper {
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
@@ -56,6 +57,7 @@ class NotifyHelper {
   }
 //display notification at same time
   displayNotification({required String Title, required String body}) async {
+
     AndroidNotificationDetails androidPlatformChannelSpecifics =
     AndroidNotificationDetails(
       'your channel id',
@@ -65,6 +67,7 @@ class NotifyHelper {
       priority: Priority.high,
       showWhen: false,
     );
+
     IOSNotificationDetails iosPlatformChannelSpecifics = new IOSNotificationDetails();
     NotificationDetails platformChannelSpecifics = new NotificationDetails(
         android: androidPlatformChannelSpecifics,
@@ -77,14 +80,36 @@ class NotifyHelper {
 
 //display notification at after 5 sec
 
+  // scheduledNotification({required String Title, required String body}) async {
+  //
+  //   await flutterLocalNotificationsPlugin.zonedSchedule(
+  //     0,
+  //     Title,
+  //     body,
+  //     tz.TZDateTime.now(tz.local).add(const Duration(seconds: 40)),
+  //     // _nextInstanceOfTenAM(hour, minutes, task.remind! , task.repreat! ,  task.dateline!),
+  //     const NotificationDetails(
+  //       android: AndroidNotificationDetails(
+  //           'your channel id', 'your channel name', channelDescription:'your channel description'),
+  //     ),
+  //     androidAllowWhileIdle: true,
+  //     uiLocalNotificationDateInterpretation:
+  //     UILocalNotificationDateInterpretation.absoluteTime,
+  //     matchDateTimeComponents: DateTimeComponents.time,
+  //
+  //   );
+  // }
+
+  // display notification With Handle TODo App
+
   scheduledNotification(int hour, int minutes,  task) async {
 
     await flutterLocalNotificationsPlugin.zonedSchedule(
       task.id!,
       task.title,
       task.deadline,
-      //tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
-      _nextInstanceOfTenAM(hour, minutes,),
+      tz.TZDateTime.now(tz.local).add(const Duration(minutes: 1)),
+      // _nextInstanceOfTenAM(hour, minutes, task.remind! , task.repreat! ,  task.dateline!),
       const NotificationDetails(
         android: AndroidNotificationDetails(
             'your channel id', 'your channel name', channelDescription:'your channel description'),
@@ -99,46 +124,71 @@ class NotifyHelper {
   }
 
 
-  tz.TZDateTime _nextInstanceOfTenAM(int hour, int minutes ) {
+  tz.TZDateTime _nextInstanceOfTenAM(int hour, int minutes ,String remind ,String repreat ,String  dateline) {
     final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
+    var foramtDate =DateFormat.yMd().parse(dateline);
+    final tz.TZDateTime fd = tz.TZDateTime.from(foramtDate,tz.local);
+
     tz.TZDateTime scheduledDate =
-    tz.TZDateTime(tz.local, now.year, now.month, now.day, hour, minutes);
-    if (scheduledDate.isBefore(now)) {
-      scheduledDate = scheduledDate.add(const Duration(days: 1));
-      // var foramtDate =DateFormat.yMd().parse(dateline);
-      //
-      //
-      // if (remind =='1 day before'){
-      //   scheduledDate = scheduledDate.subtract(const Duration(days: 1));
-      // }
-      // if (remind =='1 hour before'){
-      //   scheduledDate = scheduledDate.subtract(const Duration(hours: 1));
-      // }
-      // if (remind =='1 day before'){
-      //   scheduledDate = scheduledDate.subtract(const Duration(days: 1));
-      // }
-      // if (remind =='30 min before'){
-      //   scheduledDate = scheduledDate.subtract(const Duration(minutes: 30));
-      // }
-      // if (remind =='10 min before'){
-      //   scheduledDate = scheduledDate.subtract(const Duration(minutes: 30));
-      // }
-      // if (remind =='Daily'){
-      //   scheduledDate = tz.TZDateTime(tz.local ,now.year,now.month ,(foramtDate.day)+1 ,hour,minutes);
-      // }
-      // if (remind =='Weekly'){
-      //   scheduledDate = tz.TZDateTime(tz.local ,now.year,now.month ,(foramtDate.day)+7 ,hour,minutes);
-      // }
-      // if (remind =='Monthly'){
-      //   scheduledDate = tz.TZDateTime(tz.local ,now.year,(foramtDate.month) +1  ,(foramtDate.day) ,hour,minutes);
-      // }
+    tz.TZDateTime(tz.local, fd.year, fd.month, fd.day, hour, minutes);
 
 
+
+
+    if (remind =='1 day before'){
+      scheduledDate = scheduledDate.subtract(const Duration(days: 1));
     }
+    if (remind =='1 hour before'){
+      scheduledDate = scheduledDate.subtract(const Duration(hours: 1));
+    }
+    if (remind =='1 day before'){
+      scheduledDate = scheduledDate.subtract(const Duration(days: 1));
+    }
+    if (remind =='30 min before'){
+      scheduledDate = scheduledDate.subtract(const Duration(minutes: 30));
+    }
+    if (remind =='10 min before'){
+      scheduledDate = scheduledDate.subtract(const Duration(minutes: 30));
+    }
+
+    if (scheduledDate.isBefore(now)) {
+      if (remind =='Daily'){
+        scheduledDate = tz.TZDateTime(tz.local ,now.year,now.month ,(foramtDate.day)+1 ,hour,minutes);
+      }
+      if (remind =='Weekly'){
+        scheduledDate = tz.TZDateTime(tz.local ,now.year,now.month ,(foramtDate.day)+7 ,hour,minutes);
+      }
+      if (remind =='Monthly'){
+        scheduledDate = tz.TZDateTime(tz.local ,now.year,(foramtDate.month) +1  ,(foramtDate.day) ,hour,minutes);
+      }
+      if (remind =='1 day before'){
+        scheduledDate = scheduledDate.subtract(const Duration(days: 1));
+      }
+      if (remind =='1 hour before'){
+        scheduledDate = scheduledDate.subtract(const Duration(hours: 1));
+      }
+      if (remind =='1 day before'){
+        scheduledDate = scheduledDate.subtract(const Duration(days: 1));
+      }
+      if (remind =='30 min before'){
+        scheduledDate = scheduledDate.subtract(const Duration(minutes: 30));
+      }
+      if (remind =='10 min before'){
+        scheduledDate = scheduledDate.subtract(const Duration(minutes: 30));
+      }
+    }
+
+
+
+    debugPrint('next scheduledDate ${scheduledDate}');
+
     return scheduledDate;
 
 
   }
+
+
+
   Future<void> _configureLocalTimeZone() async{
     tz.initializeTimeZones();
     final String timeZone = await FlutterNativeTimezone.getLocalTimezone();

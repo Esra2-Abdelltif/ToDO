@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:todo_algoriza/util/style/colors.dart';
+import 'package:todo_algoriza/core/util/style/colors.dart';
 
 void NavigateTo({context,router})=>  Navigator.push(context,MaterialPageRoute(builder: (context) => router));
 void NavigatePop({context})=>  Navigator.pop(context);

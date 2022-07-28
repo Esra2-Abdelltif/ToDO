@@ -3,12 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:todo_algoriza/util/Bloc/cubit.dart';
-import 'package:todo_algoriza/util/Bloc/states.dart';
-import 'package:todo_algoriza/util/services/notfication_services.dart';
-import 'package:todo_algoriza/util/widgets/customTextField.dart';
+import 'package:todo_algoriza/core/util/Bloc/cubit.dart';
+import 'package:todo_algoriza/core/util/Bloc/states.dart';
+import 'package:todo_algoriza/core/util/services/notfication_services.dart';
+import 'package:todo_algoriza/core/util/widgets/customTextField.dart';
 
-import '../../../../util/widgets/customButton.dart';
+import '../../../../core/util/widgets/customButton.dart';
 
 
 class CreateTaskWidget extends StatelessWidget {
@@ -147,7 +147,7 @@ class CreateTaskWidget extends StatelessWidget {
                     if(FormKey.currentState!.validate()) {
                     cubit.InsertDataBase();
                     debugPrint('Data inserted');
-                   cubit.notifyHelper.displayNotification(Title: 'ToDo' , body: '${cubit.TitleController.text} Created ');
+                   cubit.notifyHelper.displayNotification(Title: '${cubit.TitleController.text}' , body: 'Created ');
                     //NotifyHelper().scheduledNotification(Title: 'Create Task', body: 'Done');
 
                       }

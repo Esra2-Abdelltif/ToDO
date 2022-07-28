@@ -1,6 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:todo_algoriza/util/style/colors.dart';
+import 'package:todo_algoriza/core/util/style/colors.dart';
 
 class EmptyScreen extends StatelessWidget {
   const EmptyScreen({Key? key}) : super(key: key);

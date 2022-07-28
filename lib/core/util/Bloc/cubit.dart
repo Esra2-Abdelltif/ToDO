@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path/path.dart' as p;
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
-import 'package:todo_algoriza/util/Bloc/states.dart';
-import 'package:todo_algoriza/util/services/notfication_services.dart';
+import 'package:todo_algoriza/core/util/Bloc/states.dart';
+import 'package:todo_algoriza/core/util/services/notfication_services.dart';
 
 class AppBloc extends Cubit<AppStates> {
   AppBloc() : super(InitialAppState());
@@ -56,7 +56,7 @@ class AppBloc extends Cubit<AppStates> {
       },
       onOpen: (database) {
         db = database;
-        GetDataFromDataBase();
+        GetDataFromDataBase(db);
         debugPrint('open DataBase');
       },
     ).then((value) {
@@ -77,7 +77,7 @@ class AppBloc extends Cubit<AppStates> {
         EndTimeController.clear();
         RemindController.clear();
         RepeatController.clear();
-        GetDataFromDataBase();
+        GetDataFromDataBase(db);
         emit(AppInsertDataBaseState());
       }).catchError((error) {
         debugPrint('Error when insert new  ${error.toString()}');
@@ -85,7 +85,7 @@ class AppBloc extends Cubit<AppStates> {
     });
   }
 
-  void GetDataFromDataBase() async {
+  void GetDataFromDataBase(db) async {
     allTasks = [];
      CompletedTasks=[];
      UnCompletedTasks=[];
@@ -113,17 +113,22 @@ class AppBloc extends Cubit<AppStates> {
 
   void DeleteItem({required int id}) async {
     db.rawDelete('DELETE FROM Tasks WHERE id = ?', ['$id']).then((value) {
-      GetDataFromDataBase();
+      GetDataFromDataBase(db);
       debugPrint('Success Item Deleted');
       emit(AppDeleteItemState());
     });
   }
-
+  void deleteAll({@required Database }) async {
+    db.rawDelete('Delete  from Tasks').then((value) {
+      GetDataFromDataBase(db);
+      emit(AppDeleteAllDataBaseState());
+    });
+  }
   void MoveDataBaseScreen({required String status, required int id}) async {
     emit(AppMoveDataBaseScreenState());
     db.rawUpdate('UPDATE Tasks SET status = ?   WHERE id = ?',
         ['$status', '$id']).then((value) {
-      GetDataFromDataBase();
+      GetDataFromDataBase(db);
       emit(AppMoveDataBaseScreenState());
     });
   }
@@ -132,7 +137,7 @@ class AppBloc extends Cubit<AppStates> {
     emit(AppMarkIsCompletedStete());
     db.rawUpdate('UPDATE Tasks SET iscompleted = ?  WHERE id = ?',
         ['$iscompleted', '$id']).then((value) {
-      GetDataFromDataBase();
+      GetDataFromDataBase(db);
       emit(AppMarkIsCompletedStete());
     });
   }
@@ -160,7 +165,7 @@ class AppBloc extends Cubit<AppStates> {
         .then((value) {
       print('${model['title']} is updated successfully');
       emit(AppSetFavSuccessfulState());
-      GetDataFromDataBase();
+      GetDataFromDataBase(db);
     }).catchError((error) {
       print('Error when update ${model['title']} ${error.toString()}');
       emit(AppSetFavErrorState(error));

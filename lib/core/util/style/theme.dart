@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:todo_algoriza/util/style/colors.dart';
+import 'package:todo_algoriza/core/util/style/colors.dart';
 
 ThemeData lightthemes = ThemeData(
   primarySwatch: defultColor,

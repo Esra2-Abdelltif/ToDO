@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:todo_algoriza/util/Bloc/cubit.dart';
-import 'package:todo_algoriza/util/constant/constant.dart';
+import 'package:todo_algoriza/core/util/Bloc/cubit.dart';
+import '../../../../core/util/constant/constant.dart';
 
 class TaskTile extends StatelessWidget {
   final Map item;
@@ -44,7 +44,7 @@ class TaskTile extends StatelessWidget {
         onDismissed: (direction) {
 
           AppBloc.get(context).DeleteItem(id: item['id']);
-          AppBloc.get(context).notifyHelper.displayNotification(Title: 'ToDo' , body: '${item['title']} Deleteded');
+          AppBloc.get(context).notifyHelper.displayNotification(Title: '${item['title']}' , body: ' Deleteded');
           AppBloc.get(context).notifyHelper.cancleNotification(item);
 
 

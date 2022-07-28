@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todo_algoriza/util/constant/constant.dart';
-import 'package:todo_algoriza/util/widgets/customIconButton.dart';
+import '../../../../core/util/constant/constant.dart';
+import '../../../../core/util/widgets/customIconButton.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({Key? key,required this.payload}) : super(key: key);

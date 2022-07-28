@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_algoriza/util/constant/constant.dart';
-import 'package:todo_algoriza/util/widgets/customIconButton.dart';
+import '../../../../core/util/constant/constant.dart';
+import '../../../../core/util/widgets/customIconButton.dart';
 
 import '../Bloc/cubit.dart';
 import '../style/colors.dart';
@@ -46,7 +46,7 @@ class BuildTask extends StatelessWidget {
         ),
         onDismissed: (direction) {
           AppBloc.get(context).DeleteItem(id: item['id']);
-          AppBloc.get(context).notifyHelper.displayNotification(Title: 'ToDo' , body: '${item['title']} Deleteded');
+          AppBloc.get(context).notifyHelper.displayNotification(Title: '${item['title']}' , body: 'Deleteded');
           AppBloc.get(context).notifyHelper.cancleNotification(item);
 
 
@@ -97,6 +97,6 @@ class BuildTask extends StatelessWidget {
 
 
       ),
-    );;
+    );
   }
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_algoriza/util/Bloc/cubit.dart';
-import 'package:todo_algoriza/util/widgets/BuildTask.dart';
-import 'package:todo_algoriza/util/widgets/emptyScreen.dart';
+import 'package:todo_algoriza/core/util/Bloc/cubit.dart';
+import 'package:todo_algoriza/core/util/widgets/BuildTask.dart';
+import 'package:todo_algoriza/core/util/widgets/emptyScreen.dart';
 
-import '../../../../util/Bloc/states.dart';
+import '../../../../core/util/Bloc/states.dart';
 
 class AllScreen extends StatelessWidget {
   const AllScreen({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class AllScreen extends StatelessWidget {
               : Expanded(
             child: RefreshIndicator(
               onRefresh: () async {
-                AppBloc.get(context).GetDataFromDataBase();
+                AppBloc.get(context).GetDataFromDataBase(cubit.db);
               },
               child: ListView.builder(
                   itemBuilder: (context, index) => BuildTask(

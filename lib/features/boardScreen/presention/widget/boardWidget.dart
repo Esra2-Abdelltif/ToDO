@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_algoriza/features/createTaskScreen/presention/createTaskScreen/createTaskScreen.dart';
 import 'package:todo_algoriza/features/boardScreen/presention/widget/favoriteWidget.dart';
-import 'package:todo_algoriza/util/constant/constant.dart';
-import 'package:todo_algoriza/util/style/colors.dart';
-import 'package:todo_algoriza/util/widgets/customButton.dart';
+import 'package:todo_algoriza/core/util/style/colors.dart';
+import 'package:todo_algoriza/core/util/widgets/customButton.dart';
 
+import '../../../../core/util/constant/constant.dart';
 import 'allScreen.dart';
 import 'completedScreen.dart';
 import 'UnCompletedScreen.dart';

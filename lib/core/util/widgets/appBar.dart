@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_algoriza/features/createTaskScreen/presention/createTaskScreen/createTaskScreen.dart';
 
-import '../constant/constant.dart';
+import '../../../../core/util/constant/constant.dart';
 
 class CustomAppBar extends StatelessWidget {
   final  Title;

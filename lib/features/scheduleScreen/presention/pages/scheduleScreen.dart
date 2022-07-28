@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todo_algoriza/features/scheduleScreen/presention/widgets/scheduleWidget.dart';
-import 'package:todo_algoriza/util/widgets/customIconButton.dart';
+import '../../../../core/util/widgets/customIconButton.dart';
 
-import '../../../../util/constant/constant.dart';
+import '../../../../core/util/constant/constant.dart';
 
 class ScheduleScreen extends StatelessWidget {
   const ScheduleScreen({Key? key}) : super(key: key);
