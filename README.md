@@ -1,6 +1,5 @@
 <h1 align="center"> 👋,Algoriza Internship project </h1>
 
-## 📱 Task one Screens
 ## 📱 ToDO App
 Used bloc, SQLite, and local notifications.
 
